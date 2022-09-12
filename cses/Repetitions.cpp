@@ -5,17 +5,20 @@ int main()
     string s;
     cin >> s;
     int n = s.length();
-    int count = 1, max = 1;
-    for (int i = 0; i < n-1; i++)
+    int count = 1, maxx = 1;
+    for (int i = 1; i < n; i++)
     {
-        count = 0;
-        while (s[i] == s[i + 1]){
+        if (s[i] == s[i - 1])
+        {
             count++;
-            if(i==n-2) break;
+            maxx = max(maxx, count);
         }
-        if (count > max)
-            max = count;
+        else if (s[i] != s[i - 1])
+        {
+            maxx = max(maxx, count);
+            count = 1;
+        }
     }
-    cout << max;
+    cout << maxx;
     return 0;
 }
